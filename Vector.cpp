@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include <iostream>
 
 //! Конструктор с параметрами
 
@@ -16,8 +17,7 @@ Vector::Vector(const ValueType* rawArray, const size_t size, float coef)
 
 //! Конструктор копирования
 //! \param other - копируемый объект
-
-explicit Vector::Vector(const Vector& other)
+Vector::Vector(const Vector& other)
 {
     _size = other._size;
     _capacity = other._capacity;
@@ -56,7 +56,7 @@ Vector& Vector::operator=(const Vector& other)
 //! Конструктор перемещения
 //! \param other - перемещаемый объект
 
-explicit Vector::Vector(Vector&& other) noexcept
+Vector::Vector(Vector&& other) noexcept
 {
     _size = other._size;
     _capacity = other._capacity;
@@ -482,7 +482,7 @@ void Vector::eraseBetween(size_t beginPos, size_t endPos)
 
 //! Класс, реализующий итератор
 
-explicit Vector::Iterator::Iterator(ValueType* ptr)
+Vector::Iterator::Iterator(ValueType* ptr)
 {
     _ptr = ptr;
 }

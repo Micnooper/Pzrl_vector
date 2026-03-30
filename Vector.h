@@ -1,6 +1,5 @@
 #pragma once
-#include <iostream>
-#include <cmath>
+
 using ValueType = double;
 //! \brief Класс, реализующий С++ контейнер vector для типа int
 class Vector
