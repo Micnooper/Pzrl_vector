@@ -1,8 +1,6 @@
 #include "Vector.h"
-#include <iostream>
 
 //! Конструктор с параметрами
-
 Vector::Vector(const ValueType* rawArray, const size_t size, float coef)
 {
     _size = size;
@@ -66,7 +64,7 @@ Vector::Vector(Vector&& other) noexcept
     other._size = 0;
     other._capacity = 0;
     other._data = nullptr;
-    other._multiplicativeCoef = 0;
+    other._multiplicativeCoef = 2.0f;
 }
 
 //! Оператор присваивания перемещением
@@ -86,7 +84,7 @@ Vector& Vector::operator=(Vector&& other) noexcept
     other._size = 0;
     other._capacity = 0;
     other._data = nullptr;
-    other._multiplicativeCoef = 0;
+    other._multiplicativeCoef = 2.0f;
 
     return *this;
 }
@@ -199,7 +197,7 @@ void Vector::pushBack(const ValueType& value)
     if (!_data)
     {
         _data = new ValueType[static_cast<size_t>(_multiplicativeCoef)];
-        _capacity = static_cast<size_t>(_multiplicativeCoef);
+        _capacity = static_cast<size_t>(_multiplicativeCoef*2);
     }
 
     if (_capacity == _size) 
@@ -405,7 +403,7 @@ void Vector::popBack()
 {
     if (_size == 0)
     {
-        return;
+        throw std::out_of_range("Vector it empty");
     }
 
     _size--;
@@ -416,7 +414,7 @@ void Vector::popFront()
 {
     if (_size == 0) 
     {
-        return;
+        throw std::out_of_range("Vector it empty");
     }
 
     for (size_t i = 0; i < _size - 1; ++i)

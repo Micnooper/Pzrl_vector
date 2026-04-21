@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+#include <cstddef>
+#include <stdexcept>
 
 using ValueType = double;
 //! \brief Класс, реализующий С++ контейнер vector для типа int
