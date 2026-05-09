@@ -18,9 +18,12 @@ Vector::Vector(const ValueType* rawArray, const size_t size, float coef)
 Vector::Vector(const Vector& other)
 {
     _size = other._size;
-    _capacity = other._capacity;
-    _data = new ValueType[_capacity];
     _multiplicativeCoef = other._multiplicativeCoef;
+    _capacity = static_cast<size_t>(_size * _multiplicativeCoef);
+    if (_capacity < _size) 
+    {_capacity = _size;}
+    _data = new ValueType[_capacity];
+    
 
     for (size_t i = 0; i < _size; ++i)
     {
@@ -40,9 +43,12 @@ Vector& Vector::operator=(const Vector& other)
     delete[] _data;
 
     _size = other._size;
-    _capacity = other._capacity;
-    _data = new ValueType[_capacity];
     _multiplicativeCoef = other._multiplicativeCoef;
+    _capacity = static_cast<size_t>(_size * _multiplicativeCoef);
+    if (_capacity < _size) 
+    {_capacity = _size;}
+    _data = new ValueType[_capacity];
+    
 
     for (size_t i = 0; i < _size; ++i) 
     {
@@ -196,8 +202,10 @@ void Vector::pushBack(const ValueType& value)
 {
     if (!_data)
     {
-        _data = new ValueType[static_cast<size_t>(_multiplicativeCoef)];
-        _capacity = static_cast<size_t>(_multiplicativeCoef*2);
+        _capacity = static_cast<size_t>(_multiplicativeCoef);
+        if (_capacity == 0) 
+        {_capacity = 1;}
+        _data = new ValueType[_capacity];
     }
 
     if (_capacity == _size) 
@@ -222,8 +230,10 @@ void Vector::pushFront(const ValueType& value)
 {
     if (!_data)
     {
-        _data = new ValueType[static_cast<size_t>(_multiplicativeCoef)];
         _capacity = static_cast<size_t>(_multiplicativeCoef);
+        if (_capacity == 0) 
+        {_capacity = 1;}
+        _data = new ValueType[_capacity];
     }
 
     if (_capacity == _size) 
@@ -259,8 +269,10 @@ void Vector::insert(const ValueType& value, size_t pos)
 
     if (!_data)
     {
-        _data = new ValueType[static_cast<size_t>(_multiplicativeCoef)];
         _capacity = static_cast<size_t>(_multiplicativeCoef);
+        if (_capacity == 0) 
+        {_capacity = 1;}
+        _data = new ValueType[_capacity];
     }
 
     if (_capacity == _size) 
