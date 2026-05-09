@@ -210,6 +210,8 @@ void Vector::pushBack(const ValueType& value)
 
     if (_capacity == _size) 
     {
+        if (_capacity == 0) 
+        {_capacity = 1;}
         ValueType* _data1 = new ValueType[static_cast<size_t>(_capacity*_multiplicativeCoef)];
         for (size_t i = 0; i < _size; ++i)
         {
@@ -238,6 +240,8 @@ void Vector::pushFront(const ValueType& value)
 
     if (_capacity == _size) 
     {
+        if (_capacity == 0) 
+        {_capacity = 1;}
         ValueType* _data1 = new ValueType[static_cast<size_t>(_capacity*_multiplicativeCoef)];
         for (size_t i = 0; i < _size; ++i)
         {
